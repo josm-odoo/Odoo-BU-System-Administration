@@ -5,8 +5,8 @@ set -e  # Exit on error
 
 # This script will be used to create the initial configuration for new hire laptops and cleaning up configuration from Odoo BE image to work better for BU.
 # Written by chno
-# Last updated: Thu Oct  3 10:40:54 AM EDT 2024
-# Last update: Changed atera env variable from Admin to BSA.
+# Last updated: Thu Oct  3 02:10:08 PM EDT 2024
+# Last update: Updated atera URL to a base one instead of department specific.
 
 echo "Starting system updates..."
 
@@ -18,7 +18,7 @@ sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 
 # Install atera agent and put the new user into the Direct Sales/MMC Site.
 echo "Installing Atera agent..."
-sudo wget -O - "${BSA_URL}" | sudo bash
+sudo wget -O - "${ATERA_URL}" | sudo bash
 
 # Install ufw
 echo "Installing UFW..."
