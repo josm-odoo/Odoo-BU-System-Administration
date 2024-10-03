@@ -113,7 +113,7 @@ sudo ufw allow 123/udp
 
 # Allow outbound mailing
 sudo ufw allow out 587/tcp
-sudo ufw allout out 465/tcp
+sudo ufw allow out 465/tcp
 
 
 echo "Firewall settings done...Enabling logging..."
