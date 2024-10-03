@@ -4,7 +4,8 @@ set -e  # Exit on error
 
 # This script will be used to create the initial configuration for new hire laptops and cleaning up configuration from Odoo BE image to work better for BU.
 # Written by chno
-# Last updated: Wed Oct  2 01:07:21 PM EDT 2024
+# Last updated: Thu Oct  3 09:46:41 AM EDT 2024
+# Last update: Fixing syntax for default deny on ufw + changing logging level.
 
 echo "Starting system updates..."
 
@@ -78,7 +79,7 @@ echo "Enabling ufw firewall..."
 sudo ufw enable
 
 # Block incoming traffic by default
-sudo ufw default block incoming
+sudo ufw default deny incoming
 
 # Allow outgoing traffic by default
 sudo ufw default allow outgoing
@@ -117,7 +118,7 @@ sudo ufw allow out 465/tcp
 
 
 echo "Firewall settings done...Enabling logging..."
-sudo ufw logging on
+sudo ufw logging medium
 
 echo "Script execution completed. Consider rebooting the system to ensure all updates are applied."
 
