@@ -4,8 +4,8 @@ set -e  # Exit on error
 
 # This script will be used to create the initial configuration for new hire laptops and cleaning up configuration from Odoo BE image to work better for BU.
 # Written by chno
-# Last updated: Thu Oct  3 09:46:41 AM EDT 2024
-# Last update: Fixing syntax for default deny on ufw + changing logging level.
+# Last updated: Thu Oct  3 09:51:30 AM EDT 2024
+# Last update: Adding proto to icmp ufw profile because ufw does not have a profile for icmp.
 
 echo "Starting system updates..."
 
@@ -107,7 +107,7 @@ sudo ufw allow out 68/udp
 sudo ufw allow 5432/tcp
 
 # Allow ICMP
-sudo ufw allow icmp
+sudo ufw allow proto icmp
 
 # Allow NTP
 sudo ufw allow 123/udp
