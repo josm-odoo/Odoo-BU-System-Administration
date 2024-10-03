@@ -1,11 +1,12 @@
 #!/bin/bash:
 
+
 set -e  # Exit on error
 
 # This script will be used to create the initial configuration for new hire laptops and cleaning up configuration from Odoo BE image to work better for BU.
 # Written by chno
-# Last updated: Thu Oct  3 10:02:52 AM EDT 2024
-# Last update: Fixing the handling of proto icmp.
+# Last updated: Thu Oct  3 10:07:21 AM EDT 2024
+# Last update: Removed ICMP from ufw allow.
 
 echo "Starting system updates..."
 
@@ -105,9 +106,6 @@ sudo ufw allow out 68/udp
 
 # Allow postgres
 sudo ufw allow 5432/tcp
-
-# Allow ICMP
-sudo ufw allow from any to any proto icmp
 
 # Allow NTP
 sudo ufw allow 123/udp
