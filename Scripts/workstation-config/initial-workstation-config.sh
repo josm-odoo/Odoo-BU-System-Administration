@@ -5,8 +5,8 @@ set -e  # Exit on error
 
 # This script will be used to create the initial configuration for new hire laptops and cleaning up configuration from Odoo BE image to work better for BU.
 # Written by chno
-# Last updated: Thu Oct  3 02:25:02 PM EDT 2024
-# Last update: Removed atera agent install entirely.
+# Last updated: Mon Oct  7 08:00:34 AM EDT 2024
+# Last update: Disabled wifi powersaver.
 
 echo "Starting system updates..."
 
@@ -113,6 +113,18 @@ sudo ufw allow out 465/tcp
 
 echo "Firewall settings done...Enabling logging..."
 sudo ufw logging medium
+
+### Wifi Powersaving Disablement ###
+cat << EOF > /etc/NetworkManager/conf.d/wifi-powersaver.conf
+[connection]
+wifi.powersaver = 2
+EOF
+
+echo "Wi-Fi power saving has been disabled. Restarting Network manager..."
+
+systemctl restart NetworkManager
+
+echo "Network Manager restarted..."
 
 echo "Script execution completed. Consider rebooting the system to ensure all updates are applied."
 
