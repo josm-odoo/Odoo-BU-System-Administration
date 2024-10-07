@@ -5,8 +5,8 @@ set -e  # Exit on error
 
 # This script will be used to create the initial configuration for new hire laptops and cleaning up configuration from Odoo BE image to work better for BU.
 # Written by chno
-# Last updated: Mon Oct  7 08:00:34 AM EDT 2024
-# Last update: Disabled wifi powersaver.
+# Last updated: Mon Oct  7 10:51:58 AM EDT 2024
+# Last update: Fixed permission issues on wifi powersaver.
 
 echo "Starting system updates..."
 
@@ -115,14 +115,14 @@ echo "Firewall settings done...Enabling logging..."
 sudo ufw logging medium
 
 ### Wifi Powersaving Disablement ###
-cat << EOF > /etc/NetworkManager/conf.d/wifi-powersaver.conf
+sudo cat << EOF > /etc/NetworkManager/conf.d/wifi-powersaver.conf
 [connection]
 wifi.powersaver = 2
 EOF
 
 echo "Wi-Fi power saving has been disabled. Restarting Network manager..."
 
-systemctl restart NetworkManager
+sudo systemctl restart NetworkManager
 
 echo "Network Manager restarted..."
 
